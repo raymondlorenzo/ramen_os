@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="ЯΛY://GARF">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="favicon.png">
+  <title>ЯΛMEN UI</title>
+</head>
+<body>
+  <div id="screen">
+    <div id="nav_handle"></div>
+    <div id="nav_underlay"></div>
+    <span id="camera"></span>
+    <div id="status_bar">
+      <div id="status_clock"></div>
+      <div id="battery_container">
+        <div id="battery_level"></div>
+      </div>
+      <div id="battery_text"></div>
+    </div>
+    <section id="lock_screen">
+      <span id="clock_lock">18:88</span>
+      <span id="date_lock"></span>
+    </section>
+    <section id="home_screen">
+      <img src="images/icon-settings.png" id="icon_settings" class="icon_home"/>
+      <img src="images/icon-terminal.png" id="icon_terminal" class="icon_home"/>
+      <img src="images/icon-messages.png" id="icon_messages" class="icon_home"/>
+      <img src="images/icon-store.png" id="icon_store" class="icon_home"/>
+      <img src="images/icon-calculator.png" id="icon_calc" class="icon_home"/>
+      <img src="images/icon-clock.png" id="icon_clock" class="icon_home"/>
+      <img src="images/icon-files.png" id="icon_files" class="icon_home"/>
+      <img src="images/icon-gallery.png" id="icon_gallery" class="icon_home"/>
+      <img src="images/icon-notes.png" id="icon_notes" class="icon_home"/>
+      <img src="images/icon-music.png" id="icon_music" class="icon_home"/>
+    </section>
+    <section id="app_settings" class="application_app">
+      <div class="app_bar">
+        <button class="liquid_glass_thing" id="close_settings">←</button>
+        <h2>Settings</h2>
+      </div>
+      <hr>
+      <button class="liquid_glass_thing options_button" id="open_about">About</button>
+      <br />
+      <br>
+      <button class="liquid_glass_thing options_button" id="open_personal">Personalization</button>
+    </section>
+    <section id="app_about" class="application_app">
+      <div class="app_bar">
+        <button class="liquid_glass_thing" id="close_about">←</button>
+        <h2>About</h2>
+      </div>
+      <hr>
+      <p id="easter_egg_thing">ЯΛMEN OS v25 Beta 11</p>
+      <br /><br /><br />
+      <p>Made by ЯΛY://GARF</p>
+    </section>
+    <section id="app_personal" class="application_app">
+      <div class="app_bar">
+        <button class="liquid_glass_thing" id="close_persolan">←</button>
+        <h2>Personalization</h2>
+      </div>
+      <hr>
+      <h3>Wallpaper</h3>
+      <div id="carrousel">
+        <img src="images/wall-01.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-02.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-03.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-04.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-05.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-06.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-07.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-09.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-11.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-10.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-08.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+        <img src="images/wall-12.jpg" class="wallpaper_selector" onclick="changeWallpaper(this)"/>
+      </div>
+      <br>
+      <input type="file" accept="image/*" style="display: none;" id="wallpaper_uploader">
+      <label for="wallpaper_uploader" class="liquid_glass_thing" id="uploader__button">Upload Wallpaper</label>
+      <br>
+      <br />
+      <hr />
+      <h3>Blurred Ice Effect Strength</h3>
+      <input type="range" id="blur_stren_slider" value="2.5" min="1.5" max="15" step="1.5"/><span id="ammo_blur"></span>
+      <hr>
+      <h3>Camera Cutout</h3>
+      <button class="liquid_glass_thing cutout_button" onclick="islandCutout()">Island</button>
+      <button class="liquid_glass_thing cutout_button" onclick="notchCutout()">Notch</button>
+      <button class="liquid_glass_thing cutout_button" onclick="dropCutout()">Drop</button>
+      <button class="liquid_glass_thing cutout_button" onclick="dropNotchCutout()">Droplet</button>
+      <br><br><br><br>
+    </section>
+    <section id="app_calc" class="application_app">
+      <input type="text" id="calc_panel" placeholder="0" class="liquid_glass_thing">
+      <div id="numpad">
+        <button onclick="erase()" id="erase" style="border-radius: 10px; background: #A25555AA;">AC</button>
+        <button onclick="delLast()" id="delLast" style="background: #A25555AA; border-radius: 10px;">⌫</button>
+        <button onclick="switchMinus()">±</button>
+        <button onclick="append('/')">÷</button>
+        <br />
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('*')">×</button>
+        <br />
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('-')">-</button>
+        <br />
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('+')">+</button>
+        <br />
+        <button onclick="append('0')">0</button>
+        <button onclick="sqrt()">√</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="calcc()" id="calcc" style="border-radius: 10px; background: #545494AA;">=</button>
+      </div>
+    </section>
+    <section id="app_gallery" class="application_app">
+      <img src="images/wall-01.jpg" id="gallery_image"/>
+      <button id="button_gallery" class="liquid_glass_thing">Open in another tab</button>
+    </section>
+  </div>
+  <div id="scale_thing">
+    <input type="range" id="width_phoen" max="575" min="100" step="1">
+    <input type="range" id="height_phoen" max="750" min="200" step="1">
+    <br>
+    <span id="width_height_phoen"></span>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/apps.js"></script>
+</body>
+</html>
