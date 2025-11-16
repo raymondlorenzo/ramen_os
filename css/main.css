@@ -1,0 +1,375 @@
+@import url("home_screen.css");
+@font-face{
+ font-family: 'VCR';
+ src: url('./fonts/vcr.ttf');
+ font-weight: normal;
+ font-style: normal;
+}
+
+:root{
+  --blurred-ice-fx-strength: 2.5px;
+}
+html,body{
+  background: #1a2130;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  scroll-snap-type: none;
+  overflow: hidden;
+  scale: 0.975;
+  font-family: 'VCR', Tahoma;
+}
+#screen{
+  outline: 2px solid #BABABA;
+  outline-offset: 1.5px;
+  border: 4.5px solid #000;
+  /*border-bottom: 9px solid #000;*/
+  width: 280px;
+  height: 580px;
+  background: linear-gradient(to top, #3B5579, #87A3AD);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 22.5px;
+  object-fit: contain;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: all 0.525s ease-out, width 0.525s ease-out;
+  overflow: hidden;
+}
+#lock_screen{
+  width: 100%;
+  height: 100%;
+  color: white;
+  background: #334a;
+  backdrop-filter: blur(var(--blurred-ice-fx-strength));
+  position: absolute;
+  border-radius: 16.5px;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: all .35s ease-out;
+  z-index: 100;
+}
+#lock_screen.hidden{
+  top: -100%;
+  opacity: 0.5;
+}
+#clock_lock{
+  left: 50%;
+  top: 80px;
+  position: absolute;
+  font-size: 54pt;
+  translate: -50%;
+  font-family: "VCR", Times New Roman;
+  mix-blend-mode: difference;
+  color: #F5F1FF;
+}
+#date_lock{
+  left: 50%;
+  translate: -50%;
+  font-size: 18pt;
+  top: 150px;
+  position: absolute;
+  font-family: "VCR", Times New Roman;
+}
+.liquid_glass_thing{
+  min-width: 35px;
+  min-height: 35px;
+  border: 1px solid #FFFFFF1A;
+  border-radius: 20px;
+  background: rgba(100, 100, 100, 0.4);
+  backdrop-filter: blur(var(--blurred-ice-fx-strength));
+  transition: backdrop-filter .35s ease;
+  color: whitesmoke;
+}
+#camera{
+  width: 110px;
+  height: 22.5px;
+  background: #000;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  translate: -50%;
+  display: flex;
+  z-index: 4500;
+  transition: width 0.2s ease, height 0.35s ease, top .2s ease, all .2s ease;
+}
+#status_bar{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  position: absolute;
+  background: #2227;
+  display: flex;
+  padding-left: 7.5px;
+  padding-top: 5px;
+  color: whitesmoke;
+  z-index: 300;
+  transition: all 0.25s ease-in;
+  backdrop-filter: blur(var(--blurred-ice-fx-strength));
+  border: 1px solid #FFFFFF1A;
+}
+#status_clock{
+  mix-blend-mode: difference;
+}
+#home_screen{
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 97;
+  display: grid;
+  scale: 1;
+  transition: all .325s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#home_screen.config{
+  scale: 0.8;
+}
+#home_screen.hidden{
+  top: 100%;
+}
+.icon_home{
+  border-radius: 50px;
+  scale: 0.3;
+}
+.application_app{
+  z-index: 98;
+  padding-top: 25px;
+}
+#app_settings, #app_personal, #app_about, #app_calc, #app_gallery, #porno_app{
+  top: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  scale: 0.6 0.75;
+  background: #2E2E32BB;
+  color: white;
+  transition: all 0.325s ease-out;
+  border: 1px solid #FFFFFF1A;
+  /*backdrop-filter: blur(var(--blurred-ice-fx-strength));*/
+  border-radius: 25px;
+}
+#app_settings.opened, #app_personal.opened, #app_about.opened, #app_calc.opened, #app_gallery.opened, #porno_app.opened{
+  top: 0;
+  scale: 1 1;
+}
+#app_personal{
+  overflow-y: scroll;
+  padding-bottom: 5px;
+}
+#app_about p{
+  position: absolute;
+  left: 50%;
+  translate: -50%
+}
+.app_bar{
+  display: flex;
+  align-items: center;
+}
+#close_settings, #close_about, #close_persolan{
+  margin-right: 5px;
+}
+hr{
+  width: 250px;
+  height: 2px;
+  background: #7F7F7F7F;
+  border: none;
+  border-radius: 20px;
+}
+.settings_section{
+  width: 250px;
+  height: 70px;
+  background: #7F7F7F;
+  left: 50%;
+  translate: -50%;
+  position: absolute;
+  border-radius: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.options_button{
+  width: 200px;
+  left: 50%;
+  translate: -50%;
+  position: absolute;
+}
+.wallpaper_selector{
+  width: 120px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+#carrousel{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5px;
+  overflow-y: scroll;
+  padding: 2px;
+  border: 1px solid #FFFFFF1A;
+  border-radius: 20px;
+  backdrop-filter: blur(var(--blurred-ice-fx-strength));
+  transition: backdrop-filter .35s ease;
+  background: #64646466;
+}
+#nav_handle{
+  width: 120px;
+  height: 4.25px;
+  background: #FFF;
+  mix-blend-mode: difference;
+  border-radius: 1px solid #AAAAAA1A;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 4.5px;
+  left: 50%;
+  translate: -50%;
+  z-index: 4500;
+  transition: bottom .25s ease;
+}
+#nav_underlay{
+  width: 100%;
+  height: 14px;
+  background: #2222;
+  position: absolute;
+  bottom: 0;
+  z-index: 4499;
+  /*backdrop-filter: blur(var(--blurred-ice-fx-strength));*/
+  backdrop-filter: blur(1000px);
+}
+.cutout_button{
+  width: 80px;
+  height: 35px;
+}
+#battery_container{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 21.25px;
+  top: 7.5px;
+  width: 35px;
+  height: 12px;
+  border: 1px solid #374046;
+  border-radius: 3px;
+  background: #84869B11;
+  overflow: hidden;
+}
+#battery_level{
+  height: 100%;
+  width: 0%;
+  background: #FFF;
+  transition: width 0.5s ease, background 0.35s ease;
+}
+#battery_text{
+  text-align: center;
+  font-size: 8pt;
+  position: absolute;
+  right: 24px;
+  top: 7.5px;
+  mix-blend-mode: difference;
+}
+#uploader__button{
+  width: 200px !important;
+  height: 5px !important;
+  padding: 2px;
+  font-size: 12pt;
+  left: 50%;
+  translate: -50%;
+  position: absolute;
+  text-align: center;
+}
+#calc_panel{
+  padding: 5px;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  translate: -50%;
+  width: 90%;
+  overflow-x: hidden;
+  height: 10px;
+  text-align: right;
+  font-size: 27.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-family: Verdana, sans-serif;
+  height: 120px;
+}
+#calc_panel::placeholder{
+ color: #BABABA;
+}
+#app_calc button{
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 2.5%;
+  border: 1px solid #FFFFFF1A;
+  background: rgba(100, 100, 100, 0.4);
+  font-size: 17.5px;
+  font-weight: 600;
+  color: whitesmoke;
+  font-family: 'Montserrat', sans-serif;
+  margin: 5px;
+  box-shadow: 0 4px #00000000;
+  /*backdrop-filter: blur(2.5px);*/
+}
+#numpad{
+  position: absolute;
+  top: 200px;
+}
+#scale_thing{
+  background: #AAA;
+  border-radius: 20px;
+  position: fixed;
+  bottom: 1px;
+  display: none;
+  left: 50%;
+  translate: -50%;
+  z-index: 5000;
+  width: 250px !important;
+  height: 70px;
+  text-align: center;
+}
+#blur_stren_slider{
+  text-align: center;
+}
+#gallery_image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 90%;
+  height: 95%;
+  object-fit: contain;
+  border-radius: 10px;
+  z-index: 500;
+}
+#button_gallery{
+  bottom: 45px;
+  left: 50%;
+  translate: -50%;
+  position: absolute;
+  z-index: 501;
+}
+#porno_app img{
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+#porno_app{
+  overflow-y: scroll;
+  padding-bottom: 30px;
+}

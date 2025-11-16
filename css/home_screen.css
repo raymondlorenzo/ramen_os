@@ -1,0 +1,50 @@
+#icon_settings{
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+}
+#icon_terminal{
+  position: absolute;
+  bottom: -50px;
+  left: 10px;
+}
+#icon_messages{
+  position: absolute;
+  bottom: -50px;
+  left: 70px;
+}
+#icon_store{
+  position: absolute;
+  bottom: -50px;
+  left: 130px;
+}
+#icon_calc{
+  position: absolute;
+  bottom: 10px;
+  left: -50px;
+}
+#icon_clock{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+#icon_files{
+  position: absolute;
+  bottom: 10px;
+  left: 70px;
+}
+#icon_gallery{
+  position: absolute;
+  bottom: 10px;
+  left: 130px;
+}
+#icon_notes{
+  position: absolute;
+  bottom: 70px;
+  left: -50px;
+}
+#icon_music{
+  position: absolute;
+  bottom: 70px;
+  left: 130px;
+}
