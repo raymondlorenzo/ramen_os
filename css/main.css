@@ -36,7 +36,7 @@ body {
 	background-position: center;
 	background-size: cover;
 	/* scroll-snap-type: none; */
-	/* overflow: hidden; */
+	overflow: hidden;
 	/* object-fit: contain; */
 	/* scale: 0.99; */
 	font-family: "ProductSans-Medium", Tahoma;
