@@ -6,6 +6,7 @@
 		<meta name="author" content="ЯΛY://GARF" />
 		<link rel="stylesheet" href="css/main.css" />
 		<link rel="icon" href="favicon.png" />
+		<link rel="manifest" href="./manifest.json">
 		<title>ЯΛMEN UI</title>
 	</head>
 	<body>
@@ -27,7 +28,7 @@
 			<div id="blankscreen"></div>
 			<div id="nav_handle"></div>
 			<div id="nav_underlay"></div>
-			<div id="popup"></div>
+			<div id="popup" class="liquid_glass_element"></div>
 			<div id="camera"></div>
 			<div id="status_notif"></div>
 			<div id="status_cntrl"></div>
@@ -38,8 +39,9 @@
 				</div>
 				<div id="battery_text"></div>
 			</div>
-			<section id="notif_panel"></section>
-			<section id="cntrl_panel"></section>
+			<section id="cntrl_panel">
+				<button id="wifi" class="liquid_glass_element">Wifi</button>
+			</section>
 			<section id="lock_screen">
 				<span id="clock_lock">18:88</span>
 				<span id="date_lock"></span>
@@ -64,14 +66,14 @@
 					</div>
 				</div>
 				<hr />
-				<button class="liquid_glass_thing options_button" id="open_about">About</button>
+				<button class="liquid_glass_element options_button" id="open_about">About</button>
 				<br />
 				<br />
-				<button class="liquid_glass_thing options_button" id="open_personal">Personalization</button>
+				<button class="liquid_glass_element options_button" id="open_personal">Personalization</button>
 			</section>
 			<section id="app_about" class="application_app">
 				<div class="app_bar">
-					<button class="liquid_glass_thing" id="close_about">←</button>
+					<button class="liquid_glass_element" id="close_about">←</button>
 					<div class="title_general">
 						<div class="marked_left_title"></div>
 						<h2>About</h2>
@@ -80,7 +82,7 @@
 				<hr />
 				<div class="about_text">
 					<div class="marked_left"></div>
-					<h2 id="easter_egg_thing">ЯΛMEN UI 25</h2>
+					<h2 id="easter_egg_thing">ЯΛMEN UI 25.4</h2>
 				</div>
 				<div class="about_text">
 					<div class="marked_left"></div>
@@ -93,7 +95,7 @@
 			</section>
 			<section id="app_personal" class="application_app">
 				<div class="app_bar">
-					<button class="liquid_glass_thing" id="close_persolan">←</button>
+					<button class="liquid_glass_element" id="close_persolan">←</button>
 					<div class="title_general">
 						<div class="marked_left_title"></div>
 						<h2>Personalization</h2>
@@ -120,7 +122,7 @@
 				</div>
 				<br />
 				<input type="file" accept="image/*" style="display: none" id="wallpaper_uploader" />
-				<label for="wallpaper_uploader" class="liquid_glass_thing" id="uploader__button">Upload Wallpaper</label>
+				<label for="wallpaper_uploader" class="liquid_glass_element" id="uploader__button">Upload Wallpaper</label>
 				<br />
 				<br />
 				<hr />
@@ -128,14 +130,14 @@
 					<div class="marked_left_title"></div>
 					<h3>Permafrost Blur Strength</h3>
 				</div>
-				<input type="range" id="blur_stren_slider" value="2.5" min="1.5" max="15" step="1.5" /><span id="ammo_blur"></span>
+				<input type="range" id="blur_stren_slider" value="2.5" min="2" max="7" step="1" /><span id="ammo_blur"></span>
 				<hr />
 				<div class="title_general">
 					<div class="marked_left_title"></div>
 					<h3>Camera Cutout</h3>
 				</div>
-				<button class="liquid_glass_thing cutout_button" onclick="islandCutout()">Island</button>
-				<button class="liquid_glass_thing cutout_button" onclick="dropCutout()">Drop</button>
+				<button class="liquid_glass_element cutout_button" onclick="islandCutout()">Island</button>
+				<button class="liquid_glass_element cutout_button" onclick="dropCutout()">Drop</button>
 				<hr />
 				<div class="title_general">
 					<div class="marked_left_title"></div>
@@ -145,7 +147,7 @@
 				<br /><br /><br /><br />
 			</section>
 			<section id="app_calc" class="application_app">
-				<input type="text" id="calc_panel" placeholder="0" class="liquid_glass_thing" />
+				<input type="text" id="calc_panel" placeholder="0" class="liquid_glass_element" />
 				<div id="numpad">
 					<button onclick="erase()" id="erase" style="border-radius: 10px; background: #a25555aa">AC</button>
 					<button onclick="delLast()" id="delLast" style="background: #a25555aa; border-radius: 10px">⌫</button>
@@ -175,25 +177,24 @@
 			</section>
 			<section id="app_gallery" class="application_app">
 				<img src="images/wall-01.jpg" id="gallery_image" />
-				<button id="button_gallery" class="liquid_glass_thing">Open in another tab</button>
+				<button id="button_gallery" class="liquid_glass_element">Open in another tab</button>
 			</section>
 			<section id="app_terminal" class="application_app">
 				<p>Custom commands:</p>
 				<div id="comm_list">
 					<div id="scrollabe_comm">
-						<p onclick="console_inpit.value = this.textContent"><code>showHeadsUp(message:string, duration:float)</code></p>
+						<p onclick="console_inpit.value = this.textContent"><code>showHeadsUp("", 2.5)</code></p>
 						<p onclick="console_inpit.value = this.textContent"><code>islandCutout()</code></p>
 						<p onclick="console_inpit.value = this.textContent"><code>dropCutout()</code></p>
-						<p onclick="console_inpit.value = this.textContent"><code>setWallpaper(element:string)</code></p>
 						<p><code onclick="console_inpit.value = this.textContent">hideStatusBar()</code></p>
-						<p><code onclick="console_inpit.value = this.textContent">changePhoneSizeY(val)</code></p>
-						<p><code onclick="console_inpit.value = this.textContent">changePhoneSizeX(val)</code></p>
+						<p>[XPRIMNTL]<code onclick="console_inpit.value = this.textContent">changePhoneSizeX(270)</code></p>
+						<p>[XPRIMNTL]<code onclick="console_inpit.value = this.textContent">changePhoneSizeY(540)</code></p>
 					</div>
 				</div>
 				<form id="console_page">
-					<button type="button" id="del_xo" class="liquid_glass_thing">&#x232B;</button>
-					<input type="text" id="console_inpit" />
-					<button type="submit" id="exec_xo" class="liquid_glass_thing">→</button>
+					<button type="button" id="del_xo" class="liquid_glass_element">&#x232B;</button>
+					<input type="text" id="console_inpit" class="liquid_glass_element"/>
+					<button type="submit" id="exec_xo" class="liquid_glass_element">→</button>
 				</form>
 			</section>
 		</div>
