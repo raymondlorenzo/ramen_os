@@ -38,7 +38,7 @@ body {
 	/* scroll-snap-type: none; */
 	overflow: hidden;
 	/* object-fit: contain; */
-	/* scale: 0.99; */
+scale: 0.99;
 	font-family: "ProductSans-Medium", Tahoma;
 }
 code {
