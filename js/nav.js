@@ -2,7 +2,7 @@ function enableSwipeToClose(element) {
 	let startY = 0
 
 	let onTouchStart = (e) => {
-		document.getElementById("nav_handle").style.bottom = `9px`
+		document.getElementById("nav_handle").style.bottom = `8px`
 		startY = e.touches ? e.touches[0].clientY : e.clientY
 	}
 	let onTouchEnd = (e) => {
@@ -10,17 +10,21 @@ function enableSwipeToClose(element) {
 		let endY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY
 
 		if (startY - endY > 50) {
-			document.getElementById("home_screen").classList.remove("hidden")
-			document.getElementById("app_personal").classList.remove("opened")
-			document.getElementById("app_settings").classList.remove("opened")
-			document.getElementById("lock_screen").classList.add("hidden")
-			document.getElementById("app_about").classList.remove("opened")
-			document.getElementById("app_calc").classList.remove("opened")
-			document.getElementById("app_gallery").classList.remove("opened")
-			document.getElementById("app_terminal").classList.remove("opened")
-			document.getElementById("cntrl_panel").classList.remove("shown")
-			document.getElementById("home_screen").classList.remove("config")
-			document.getElementById("status_clock").style.opacity = "1"
+			if (rUI.isLock) {
+				document.getElementById("home_screen").classList.remove("hidden")
+				document.getElementById("lock_screen").classList.add("hidden")
+				document.getElementById("status_clock").style.opacity = "1"
+				rUI.isLock = false
+			} else {
+				document.getElementById("app_personal").classList.remove("opened")
+				document.getElementById("app_settings").classList.remove("opened")
+				document.getElementById("app_about").classList.remove("opened")
+				document.getElementById("app_calc").classList.remove("opened")
+				document.getElementById("app_gallery").classList.remove("opened")
+				document.getElementById("app_terminal").classList.remove("opened")
+				document.getElementById("cntrl_panel").classList.remove("shown")
+				document.getElementById("home_screen").classList.remove("config")
+			}
 		}
 	}
 
@@ -32,7 +36,7 @@ function enableSwipeToClose(element) {
 enableSwipeToClose(document.getElementById("nav_underlay"))
 enableSwipeToClose(document.getElementById("nav_handle"))
 
-enableSwipeToNotif = () => {
+const enableSwipeToNotif = () => {
 	let startYNotif = 0
 
 	let onTouchStartNotif = (e) => {
@@ -45,6 +49,7 @@ enableSwipeToNotif = () => {
 			document.getElementById("cntrl_panel").classList.remove("shown")
 			document.getElementById("home_screen").classList.add("hidden")
 			document.getElementById("status_clock").style.opacity = "0"
+			rUI.isLock = true
 		}
 	}
 
@@ -55,7 +60,7 @@ enableSwipeToNotif = () => {
 }
 enableSwipeToNotif()
 
-enableSwipeToCtrl = () => {
+const enableSwipeToCtrl = () => {
 	let startYNotif = 0
 
 	let onTouchStartCtrl = (e) => {
@@ -76,7 +81,7 @@ enableSwipeToCtrl = () => {
 }
 enableSwipeToCtrl()
 
-enableSwipeToCloseCtrl = () => {
+const enableSwipeToCloseCtrl = () => {
 	let startYCCtrl = 0
 
 	let onTouchStartCCtrl = (e) => {

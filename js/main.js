@@ -5,12 +5,12 @@ var timerIslandVar = null
 let bar_progress = 0
 
 let loading_text_table = [
-	"Turning on the flux capacitator",
-	"The quick fox jumps over the lazy dog",
+	"Loading RSDK (Ramen Software Developer Kit)",
+	"RamenUI Powered by HTML5",
 	"A phone with some limits",
 	"Loading RSDK (Ramen Software Developer Kit)",
 	"Loading RSDK (Ramen Software Developer Kit)",
-	"Warming up Noodle Soup..."
+	"Warming up Noodle Soup…"
 ]
 
 const docElements = {
@@ -39,6 +39,9 @@ const docElements = {
 	deleteCurrentCommandButton: document.getElementById("del_xo"),
 	consoleInput: document.getElementById("console_inpit")
 }
+rUI = {
+	isLock: true
+}
 
 docElements.hintsOK.addEventListener("click", () => {
 	docElements.hintsDialogue.style.opacity = "0"
@@ -54,14 +57,44 @@ docElements.statusClock.style.opacity = "0"
 hideStatusBar = () => {
 	docElements.statusBar.classList.toggle("hidden")
 }
+updateScreenSize = () => {
+	const viewport_width = window.innerWidth
+	const viewport_height = window.innerHeight
+
+	const current_width = parseFloat(docElements.screen.style.width) || docElements.screen.style.offsetWidth
+	const current_height = parseFloat(docElements.screen.style.height) || docElements.screen.style.offsetHeight
+
+	const max_allowed_width = viewport_width * 0.95
+	const max_allowed_height = viewport_height * 0.95
+
+	let scale_x = 1
+	let scale_y = 1
+
+	if (current_width > max_allowed_width) {
+		scale_x = max_allowed_width / current_width
+	}
+	if (current_height > max_allowed_height) {
+		scale_y = max_allowed_height / current_height
+	}
+	const finale_scale = Math.min(scale_x, scale_y)
+
+	docElements.screen.style.scale = finale_scale ? `${finale_scale}` : "1"
+}
 changePhoneSizeX = (val) => {
-	docElements.screen.style.width = `${val}px`
+	if (val <= 260) {
+		docElements.screen.style.width = `260px`
+		updateScreenSize()
+	} else {
+		docElements.screen.style.width = `${val}px`
+	}
 }
 changePhoneSizeY = (val) => {
 	if (val <= 300) {
 		docElements.screen.style.height = `300px`
+		updateScreenSize()
 	} else {
 		docElements.screen.style.height = `${val}px`
+		updateScreenSize()
 	}
 }
 
@@ -73,13 +106,13 @@ simulate_loading = () => {
 	document.getElementById("loa_under").style.width = "0%"
 
 	loading_interval = setInterval(() => {
-		bar_progress += 1.5
-		
+		bar_progress += 1.6
+
 		document.getElementById("loa_under").style.width = `${bar_progress}%`
 
 		if (bar_progress >= 100) {
 			clearInterval(loading_interval)
-			setTimeout(checkLoading, 300)
+			setTimeout(checkLoading, 200)
 		}
 	}, 55)
 }
@@ -93,12 +126,14 @@ simulate_loading()
 lockPhone = () => {
 	docElements.homeScreen.classList.add("hidden")
 	docElements.lockScreen.classList.remove("hidden")
-	docElements.blankscreen.style.display = "flex"
+	docElements.blankscreen.classList.remove("hidden")
+	docElements.statusClock.style.opacity = "0"
+	rUI.isLock = true
 }
 docElements.homeScreen.addEventListener("dblclick", () => lockPhone())
 docElements.lockScreen.addEventListener("dblclick", () => lockPhone())
 docElements.blankscreen.addEventListener("dblclick", () => {
-	docElements.blankscreen.style.display = "none"
+	docElements.blankscreen.classList.add("hidden")
 })
 
 //clocks logic
@@ -126,18 +161,27 @@ updateClocks = () => {
 setInterval(updateClocks, 1000)
 updateClocks()
 
+onUpdate = () => {
+	updateScreenSize()
+}
+setInterval(onUpdate, 5)
+
+window.addEventListener("resize", updateScreenSize)
+
 //data save logix
 window.addEventListener("load", () => {
+	updateScreenSize()
+	rUI.isLock = true
 	let str1 = localStorage.getItem("blur_strength")
 	if (str1) {
 		document.documentElement.style.setProperty("--perma-blur-fx-strength", str1 + "px")
 		docElements.permaBlurStrengthSlider.value = str1
-		docElements.permaBlurStrenghtValue.textContent = "x" + str1 / 1.5
+		docElements.permaBlurStrenghtValue.textContent = "x" + str1
 	}
 
 	let str2 = localStorage.getItem("opa_amm")
 	if (str2) {
-		if (str2 >= 0.875) {
+		if (str2 >= 0.675) {
 			docElements.permaBlurStrengthSlider.disabled = true
 		} else {
 			docElements.permaBlurStrengthSlider.disabled = false
@@ -175,6 +219,7 @@ function changeWallpaper(element) {
 }
 setWallpaper = (element) => {
 	docElements.screen.style.backgroundImage = `url(${element})`
+	docElements.lockScreen.style.backgroundImage = `url(${element})`
 	docElements.galleryImage.src = element
 	localStorage.setItem("fondo", element)
 }
@@ -227,13 +272,13 @@ navigator.getBattery().then((battery) => {
 //blur slider slider
 docElements.permaBlurStrengthSlider.addEventListener("input", () => {
 	document.documentElement.style.setProperty("--perma-blur-fx-strength", docElements.permaBlurStrengthSlider.value + "px")
-	document.getElementById("ammo_blur").textContent = "x" + docElements.permaBlurStrengthSlider.value / 1.5
+	document.getElementById("ammo_blur").textContent = "x" + docElements.permaBlurStrengthSlider.value
 	localStorage.setItem("blur_strength", docElements.permaBlurStrengthSlider.value)
 })
 
 // opacity slider logic
 docElements.appsOpacityStrengthSlider.addEventListener("input", () => {
-	if (docElements.appsOpacityStrengthSlider.value >= 0.875) {
+	if (docElements.appsOpacityStrengthSlider.value >= 0.675) {
 		docElements.permaBlurStrengthSlider.disabled = true
 	} else {
 		docElements.permaBlurStrengthSlider.disabled = false
@@ -291,6 +336,7 @@ checkCutoutStyle = () => {
 	}
 }
 setInterval(checkCutoutStyle, 75)
+checkCutoutStyle()
 
 //notification logic
 showHeadsUp = (message, duration) => {
@@ -331,9 +377,15 @@ showHeadsUp = (message, duration) => {
 }
 docElements.popup.addEventListener("click", () => {
 	clearTimeout(timeoutVar)
+	showingMessage = false
+	if (checkCutoutStyle() === "iphone") {
+		setTimeout(() => {
+			islandCutout()
+			docElements.camera.textContent = ""
+		}, 10)
+	}
 	docElements.popup.style.top = "-40%"
 	docElements.popup.textContent = ""
-	showingMessage = false
 })
 
 //command logic
@@ -346,6 +398,9 @@ docElements.deleteCurrentCommandButton.addEventListener("click", () => {
 })
 executeCommand = (commandSet) => {
 	try {
-		setTimeout(commandSet, 5)
-	} catch (e) {}
+		eval(commandSet)
+	} catch (e) {
+		console.error("Execution error: " + e)
+		showHeadsUp("Execution error: " + e, 4)
+	}
 }
